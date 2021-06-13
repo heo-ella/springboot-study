@@ -16,7 +16,7 @@ public class UserProfileController {
         this.mapper = mapper;
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public UserProfile getUserProfile(@PathVariable("id") Long id){
         return mapper.getUserProfile(id);
     }
@@ -26,14 +26,14 @@ public class UserProfileController {
         return mapper.getUserProfileList();
     }
 
-    @PutMapping("/{id}")
-    public void putUserProfile(@PathVariable("id") Long id, @RequestParam("name") String name, @RequestParam("phone") String phone, @RequestParam("address") String address){
-        mapper.insertUserProfile(id,name,phone,address);
+    @PutMapping("/put")
+    public void putUserProfile(@RequestBody UserProfile userProfile){
+        mapper.insertUserProfile(userProfile.getId(), userProfile.getName(), userProfile.getPhone(), userProfile.getAddress());
     }
 
     @PostMapping("/{id}")
-    public void postUserProfile(@PathVariable("id") Long id, @RequestParam("name") String name, @RequestParam("phone") String phone, @RequestParam("address") String address){
-        mapper.updateUserProfile(id,name,phone,address);
+    public void postUserProfile(@PathVariable("id") Long id, @RequestBody UserProfile userProfile){
+        mapper.updateUserProfile(id, userProfile.getName(), userProfile.getPhone(), userProfile.getAddress());
     }
 
     @DeleteMapping("/{id}")
