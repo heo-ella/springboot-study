@@ -26,6 +26,9 @@ out/
 !**/src/main/**/out/
 !**/src/test/**/out/
 
+#my-sql 
+C:/develop/IdeaProject/demo/src/main/resources
+
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
