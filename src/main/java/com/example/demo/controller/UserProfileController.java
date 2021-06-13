@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/user")
 public class UserProfileController {
 
     private UserProfileMapper mapper;
@@ -15,27 +16,27 @@ public class UserProfileController {
         this.mapper = mapper;
     }
 
-    @GetMapping("/user/{id}")
+    @GetMapping("{id}")
     public UserProfile getUserProfile(@PathVariable("id") Long id){
         return mapper.getUserProfile(id);
     }
 
-    @GetMapping("/user/all")
+    @GetMapping("/all")
     public List<UserProfile> getUserProfileList(){
         return mapper.getUserProfileList();
     }
 
-    @PutMapping("/user/{id}")
+    @PutMapping("/{id}")
     public void putUserProfile(@PathVariable("id") Long id, @RequestParam("name") String name, @RequestParam("phone") String phone, @RequestParam("address") String address){
         mapper.insertUserProfile(id,name,phone,address);
     }
 
-    @PostMapping("/user/{id}")
+    @PostMapping("/{id}")
     public void postUserProfile(@PathVariable("id") Long id, @RequestParam("name") String name, @RequestParam("phone") String phone, @RequestParam("address") String address){
         mapper.updateUserProfile(id,name,phone,address);
     }
 
-    @DeleteMapping("/user/{id}")
+    @DeleteMapping("/{id}")
     public void deleteUerProfile(@PathVariable("id") Long id){
         mapper.deleteUserProfile(id);
     }
