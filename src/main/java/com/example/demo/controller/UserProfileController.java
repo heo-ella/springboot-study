@@ -16,6 +16,7 @@ public class UserProfileController {
         this.mapper = mapper;
     }
 
+    // 각 사용자별 신청한 컨퍼런스 목록으로 변경 예정
     @GetMapping("/{id}")
     public UserProfile getUserProfile(@PathVariable("id") Long id){
         return mapper.getUserProfile(id);
@@ -26,16 +27,19 @@ public class UserProfileController {
         return mapper.getUserProfileList();
     }
 
+    // 회원가입
     @PutMapping("/put")
     public void putUserProfile(@RequestBody UserProfile userProfile){
-        mapper.insertUserProfile(userProfile.getId(), userProfile.getName(), userProfile.getPhone(), userProfile.getAddress());
+        mapper.insertUserProfile(userProfile.getId(), userProfile.getName(), userProfile.getPassword(), userProfile.getPhone(), userProfile.getAddress(), userProfile.getEmail() );
     }
 
+    // 나의 정보 수정
     @PostMapping("/{id}")
     public void postUserProfile(@PathVariable("id") Long id, @RequestBody UserProfile userProfile){
-        mapper.updateUserProfile(id, userProfile.getName(), userProfile.getPhone(), userProfile.getAddress());
+        mapper.updateUserProfile(id, userProfile.getName(),  userProfile.getPassword(), userProfile.getPhone(), userProfile.getAddress(), userProfile.getEmail());
     }
 
+    // 아이디 삭제
     @DeleteMapping("/{id}")
     public void deleteUerProfile(@PathVariable("id") Long id){
         mapper.deleteUserProfile(id);

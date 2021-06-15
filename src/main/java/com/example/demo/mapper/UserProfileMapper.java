@@ -12,11 +12,21 @@ public interface UserProfileMapper {
     @Select("SELECT * FROM UserProfile")
     List<UserProfile> getUserProfileList();
 
-    @Insert("INSERT INTO UserProfile VALUES (#{id}, #{name}, #{phone}, #{address})")
-    int insertUserProfile(@Param("id") Long id, @Param("name") String name, @Param("phone") String phone, @Param("address") String address);
+    @Insert("INSERT INTO UserProfile VALUES (#{id}, #{name}, #{password}, #{phone}, #{address}, #{email})")
+    int insertUserProfile(@Param("id") Long id,
+                          @Param("name") String name,
+                          @Param("password") String password,
+                          @Param("phone") String phone,
+                          @Param("address") String address,
+                          @Param("email") String email);
 
-    @Update("UPDATE UserProfile SET name=#{name}, phone=#{phone}, address=#{address} WHERE id=#{id}")
-    int updateUserProfile(@Param("id") Long id, @Param("name") String name, @Param("phone") String phone, @Param("address") String address);
+    @Update("UPDATE UserProfile SET name=#{name}, password=#{password}, phone=#{phone}, address=#{address}, email=#{email} WHERE id=#{id}")
+    int updateUserProfile(@Param("id") Long id,
+                          @Param("name") String name,
+                          @Param("password") String password,
+                          @Param("phone") String phone,
+                          @Param("address") String address,
+                          @Param("email") String email);
 
     @Delete("DELETE FROM UserProfile WHERE id=#{id}")
     int deleteUserProfile(@Param("id") Long id);
